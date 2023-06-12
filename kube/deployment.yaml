@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: b-service
+  namespace: practice-helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: b-service
+  template:
+    metadata:
+      labels:
+        app: b-service
+    spec:
+      containers:
+        - name: b-service
+          image: trucnguyen301197/helm-b-service:1.1.1
+          ports:
+            - containerPort: 8081

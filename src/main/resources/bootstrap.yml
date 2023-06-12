@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: b-service
+  cloud:
+    kubernetes:
+      config:
+        enabled: true

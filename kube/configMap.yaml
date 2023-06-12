@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: b-service
+  namespace: practice-helm
+data:
+  application.yml: |-
+    server:
+      servlet:
+        context-path: /b-path
+    spring:
+      application:
+        name: b-service
+      config:
+        import: kubernetes
+    management:
+      endpoint:
+        health:
+          enabled: true
+        info:
+          enabled: true
+        restart:
+          enabled: true
