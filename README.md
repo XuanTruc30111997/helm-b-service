@@ -1,12 +1,14 @@
 # Getting Started
+
+## Push to Docker Registry
 * **Build package** mvn package -Dmaven.test.skip
 * **Build Docker** docker build -t practice-helm/b-service:1.1.1 .
 * **Tag Image** docker tag practice-helm/b-service:1.1.1 <repo>/helm-b-service:1.1.1
 * **Push Image** docker push <repo>/helm-b-service:1.1.1
-### Reference Documentation
-For further reference, please consider the following sections:
 
-* [Official Apache Maven documentation](https://maven.apache.org/guides/index.html)
-* [Spring Boot Maven Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/2.7.3/maven-plugin/reference/html/)
-* [Create an OCI image](https://docs.spring.io/spring-boot/docs/2.7.3/maven-plugin/reference/html/#build-image)
-
+## Helm
+* **Helm install:** helm install b-service-dev -n practice-helm ./charts
+* **Helm get:** helm ls --all -n practice-helm
+* **Helm upgrade:** helm upgrade b-service-dev -n practice-helm ./charts
+* **Helm rollback to previous version:** helm rollback b-service-dev 1 -n practice-helm
+* **Helm uninstall:** helm uninstall b-service-dev -n practice-helm

@@ -1,0 +1,24 @@
+image:
+  repository: trucnguyen301197
+  prefix: helm
+service:
+  name: b-service
+  namespace: practice-helm
+  server:
+    port: 8081
+    servlet:
+      contextPath: /b-path
+  config:
+    import: kubernetes
+  management:
+    endpoint:
+      health:
+        enabled: true
+      info:
+        enabled: true
+      restart:
+        enabled: true
+
+replications:
+  desire: 1
+
