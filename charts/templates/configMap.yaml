@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Chart.Name }}
+  namespace: {{ .Values.service.namespace }}
+data:
+  application.yml: |-
+    server:
+      servlet:
+        context-path: {{ .Values.service.server.servlet.contextPath }}
+    spring:
+      application:
+        name: {{ .Chart.Name }}
+      config:
+        import: {{ .Values.service.config.import }}
+    management:
+      endpoint:
+        health:
+          enabled: {{ .Values.service.management.endpoint.health.enabled }}
+        info:
+          enabled: {{ .Values.service.management.endpoint.info.enabled }}
+        restart:
+          enabled: {{ .Values.service.management.endpoint.restart.enabled }}
