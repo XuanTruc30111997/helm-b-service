@@ -3,15 +3,17 @@ kind: Deployment
 metadata:
   name: {{ .Chart.Name }}
   namespace: {{ .Values.service.namespace }}
+  labels:
+    {{- include "chart.labels" . | indent 4 }}
 spec:
   replicas: {{ .Values.replications.desire }}
   selector:
     matchLabels:
-      app: {{ .Chart.Name }}
+      {{- include "common.labels" . | indent 6 }}
   template:
     metadata:
       labels:
-        app: {{ .Chart.Name }}
+        {{- include "common.labels" . | indent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}

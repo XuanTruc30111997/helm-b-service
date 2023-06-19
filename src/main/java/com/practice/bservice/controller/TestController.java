@@ -15,9 +15,9 @@ public class TestController {
 
     @GetMapping("/")
     public ResponseEntity<String> test() {
-        log.info("Start getInvoiceDetail");
+        log.info("Start test");
         String response = testService.callTest();
-        log.info("End getInvoiceDetail with response {}", response);
+        log.info("End with response {}", response);
         return ResponseEntity.ok(response);
     }
 }
