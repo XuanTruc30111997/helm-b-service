@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: {{ .Chart.Name }}
   namespace: {{ .Values.service.namespace }}
+  labels:
+    {{ include "common.labels" .}}
 data:
   application.yml: |-
     server:
