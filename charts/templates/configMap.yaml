@@ -8,6 +8,7 @@ metadata:
 data:
   application.yml: |-
     server:
+      port: {{ .Values.service.server.port }}
       servlet:
         context-path: {{ .Values.service.server.servlet.contextPath }}
     spring:
