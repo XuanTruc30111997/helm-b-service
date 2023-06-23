@@ -30,5 +30,11 @@ service:
   restartPolicy: Always
 
 replications:
-  desire: 1
+  desire: 2
+
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1 # Max number of pods create one time - default 25%
+    maxUnavailable: 0 # Max number of pods offline during rollout
 

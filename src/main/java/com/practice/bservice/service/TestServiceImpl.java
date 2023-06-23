@@ -6,6 +6,6 @@ import org.springframework.stereotype.Service;
 public class TestServiceImpl implements TestService {
     @Override
     public String callTest() {
-        return "This is B";
+        return "This is B - with Rolling version";
     }
 }
