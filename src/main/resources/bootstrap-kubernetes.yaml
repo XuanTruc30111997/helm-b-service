@@ -1,0 +1,10 @@
+spring:
+  application:
+    name: ${CONFIGMAP_NAME}
+  cloud:
+    kubernetes:
+      enabled: true
+      config:
+        enabled: true
+        name: ${CONFIGMAP_NAME}
+        namespace: ${KUBERNETES_NAMESPACE}

@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.practice</groupId>
 	<artifactId>b-service</artifactId>
-	<version>1.2.1-SNAPSHOT</version>
+	<version>1.3.5-SNAPSHOT</version>
 	<name>b-service</name>
 	<description>B Service</description>
 	<properties>

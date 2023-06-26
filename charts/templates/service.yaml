@@ -1,3 +1,4 @@
+  {{ if not .Values.strategy.canary.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -10,6 +11,6 @@ spec:
     - port: {{ .Values.service.server.port }}
       protocol: TCP
       targetPort: {{ .Values.service.server.port }}
-      name: http
   selector:
-    {{- include "common.labels" . | indent 4 }}
+    {{- include "chart.labels.part" . | indent 4 }}
+    {{- end -}}

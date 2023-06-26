@@ -3,6 +3,7 @@
 ## Version
 * **1.1.1** Include helm chart
 * **1.2.1** Rolling Deployment
+* **1.2.1** Canary Deployment
 
 ## Ingress
 * minikube addons enable ingress
@@ -10,9 +11,9 @@
 
 ## Push to Docker Registry
 * **Build package** mvn package -Dmaven.test.skip
-* **Build Docker** docker build -t practice-helm/b-service:1.2.1 .
-* **Tag Image** docker tag practice-helm/b-service:1.2.1 <repo>/helm-b-service:1.2.1
-* **Push Image** docker push <repo>/helm-b-service:1.2.1
+* **Build Docker** docker build -t practice-helm/b-service:1.3.5 .
+* **Tag Image** docker tag practice-helm/b-service:1.3.5 <repo>/helm-b-service:1.3.5
+* **Push Image** docker push <repo>/helm-b-service:1.3.5
 
 ## Helm
 * **Helm install:** helm install b-service-dev -n practice-helm ./charts

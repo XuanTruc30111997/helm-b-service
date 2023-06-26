@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .Chart.Name }}
+  name: {{ include "config.name" . }}
   namespace: {{ .Values.service.namespace }}
   labels:
     {{- include "chart.labels" . | indent 4 }}
 data:
-  application.yml: |-
+  application.yaml: |-
     server:
       port: {{ .Values.service.server.port }}
       servlet:
@@ -24,3 +24,6 @@ data:
           enabled: {{ .Values.service.management.endpoint.info.enabled }}
         restart:
           enabled: {{ .Values.service.management.endpoint.restart.enabled }}
+
+    testing:
+      something: {{ .Values.service.testing.something }}

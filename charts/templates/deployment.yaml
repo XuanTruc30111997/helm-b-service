@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Chart.Name }}
+  name: {{ include "deployment.name" . }}
   namespace: {{ .Values.service.namespace }}
   labels:
     {{- include "chart.labels" . | indent 4 }}
@@ -14,18 +14,24 @@ spec:
       maxUnavailable: {{ .Values.strategy.rollingUpdate.maxUnavailable }}
   selector:
     matchLabels:
-      {{- include "common.labels" . | indent 6 }}
+      {{- include "chart.labels.part" . | indent 6 }}
   template:
     metadata:
       labels:
-        {{- include "common.labels" . | indent 8 }}
+        {{- include "chart.labels" . | indent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}
           image: {{ include "image.registry" . }}:{{ .Values.image.tag | default .Chart.AppVersion }}
           ports:
             - containerPort: {{ .Values.service.server.port }}
-
+          env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "kubernetes"
+            - name: CONFIGMAP_NAME
+              value: {{ include "config.name" . }}
+            - name: KUBERNETES_NAMESPACE
+              value: {{ .Values.service.namespace }}
           readinessProbe:
             tcpSocket:
               port: {{ .Values.service.server.port }}
