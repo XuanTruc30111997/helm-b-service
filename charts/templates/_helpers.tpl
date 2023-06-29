@@ -45,7 +45,8 @@ app.kubernetes.io/name: {{ template "deployment.name" . }}
 {{- end }}
 
 {{- define "ingress.canary.annotations" }}
-nginx.ingress.kubernetes.io/canary: {{ .Values.strategy.canary.enabled }}
-nginx.ingress.kubernetes.io/canary-weight: {{ .Values.strategy.canary.weight }}
+nginx.ingress.kubernetes.io/canary: "{{ .Values.strategy.canary.enabled }}"
+nginx.ingress.kubernetes.io/canary-weight: "{{ .Values.strategy.canary.weight }}"
 app.kubernetes.io/name: {{ template "deployment.name" . }}
+nginx.ingress.kubernetes.io/rewrite-target: /$2
 {{- end }}

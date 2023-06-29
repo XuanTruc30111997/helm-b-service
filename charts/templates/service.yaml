@@ -1,16 +1,14 @@
-  {{ if not .Values.strategy.canary.enabled }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ .Chart.Name }}
+  name: {{ include "deployment.name" . }}
   namespace: {{ .Values.service.namespace }}
   labels:
-    {{- include "common.labels" . | indent 4 }}
+    {{- include "chart.labels" . | indent 4 }}
 spec:
   ports:
     - port: {{ .Values.service.server.port }}
       protocol: TCP
       targetPort: {{ .Values.service.server.port }}
   selector:
-    {{- include "chart.labels.part" . | indent 4 }}
-    {{- end -}}
+    {{- include "chart.labels" . | indent 4 }}

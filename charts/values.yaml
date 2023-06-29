@@ -20,8 +20,8 @@ service:
         enabled: true
 
   testing:
-#    something: another-thing2222
-    something: another-thing
+    something: another-thing2222
+#    something: another-thing
 
   readinessProbe:
     successThreshold: 3
@@ -39,6 +39,10 @@ replications:
 ingress:
   enabled: true
   hostName: practice-helm.demo
+  annotations:
+    nginx.ingress.kubernetes.io/canary: true
+    nginx.ingress.kubernetes.io/canary-weight: 20
+    app.kubernetes.io/name: some-name
 
 strategy:
   type: RollingUpdate
