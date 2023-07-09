@@ -20,16 +20,16 @@ service:
         enabled: true
 
   testing:
-    something: another-thing2222
-#    something: another-thing
+#    something: another-thing2222
+    something: another-thing
 
   readinessProbe:
     successThreshold: 3
-    initialDelaySeconds: 100
+    initialDelaySeconds: 3
     failureThreshold: 3
   livenessProbe:
-    initialDelaySeconds: 100
-    periodSeconds: 20
+    initialDelaySeconds: 3
+    periodSeconds: 2
     failureThreshold: 3
   restartPolicy: Always
 
@@ -38,7 +38,7 @@ replications:
 
 ingress:
   enabled: true
-  hostName: practice-helm.demo
+  hostName: practice.info
   annotations:
     nginx.ingress.kubernetes.io/canary: true
     nginx.ingress.kubernetes.io/canary-weight: 20

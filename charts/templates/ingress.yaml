@@ -3,23 +3,24 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ include "ingress.name" . }}
+#  name: {{ include "deployment.name" . }}
   labels:
     {{- include "chart.labels" . | indent 4 }}
-    {{- if .Values.strategy.canary.enabled }}
   annotations:
     {{- include "ingress.canary.annotations" . | indent 4 }}
-    {{- end }}
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    kubernetes.io/ingress.class: "nginx"
 spec:
   rules:
     - host: {{ .Values.ingress.hostName }}
       http:
         paths:
-        - path: /(/|$)(.*)
-          pathType: Prefix
+        - path: /
+          pathType: Exact
           backend:
             service:
               name: {{ include "deployment.name" . }}
               port:
-                number: 8083
+                number: {{ .Values.service.server.port }}
 
 {{- end -}}

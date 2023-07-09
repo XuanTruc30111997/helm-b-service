@@ -11,4 +11,4 @@ spec:
       protocol: TCP
       targetPort: {{ .Values.service.server.port }}
   selector:
-    {{- include "chart.labels" . | indent 4 }}
+    {{- include "common.labels" . | indent 4 }}

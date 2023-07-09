@@ -13,7 +13,7 @@ public class TestController {
     @Autowired
     TestService testService;
 
-    @GetMapping("/")
+    @GetMapping("")
     public ResponseEntity<String> test() {
         log.info("Start test");
         String response = testService.callTest();
