@@ -1,13 +1,13 @@
+  {{ if .Values.strategy.includeService }}
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "deployment.name" . }}
+  name: {{ include "service.name" . }}
   namespace: {{ .Values.service.namespace }}
   labels:
     {{- include "chart.labels" . | indent 4 }}
 spec:
-  type: LoadBalancer
-#  type: NodePort
+#  type: LoadBalancer
   ports:
     - port: {{ .Values.service.server.port }}
       protocol: TCP
@@ -15,3 +15,4 @@ spec:
       name: http
   selector:
     {{- include "common.labels" . | indent 4 }}
+    {{- end -}}

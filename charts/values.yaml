@@ -20,8 +20,8 @@ service:
         enabled: true
 
   testing:
-#    something: another-thing2222
-    something: another-thing
+    something: another-thing2222
+#    something: another-thing
 
   readinessProbe:
     successThreshold: 3
@@ -37,15 +37,15 @@ replications:
   desire: 1
 
 ingress:
-  enabled: true
+  enabled: false
   hostName: practice.info
   annotations:
     nginx.ingress.kubernetes.io/canary: true
     nginx.ingress.kubernetes.io/canary-weight: 20
-    app.kubernetes.io/name: some-name
 
 strategy:
   type: RollingUpdate
+  includeService: true
   rollingUpdate:
     maxSurge: 1 # Max number of pods create one time - default 25%
     maxUnavailable: 0 # Max number of pods offline during rollout
