@@ -6,9 +6,12 @@ metadata:
   labels:
     {{- include "chart.labels" . | indent 4 }}
 spec:
+  type: LoadBalancer
+#  type: NodePort
   ports:
     - port: {{ .Values.service.server.port }}
       protocol: TCP
       targetPort: {{ .Values.service.server.port }}
+      name: http
   selector:
     {{- include "common.labels" . | indent 4 }}
