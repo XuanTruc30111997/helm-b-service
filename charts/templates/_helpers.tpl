@@ -4,17 +4,22 @@
 
 {{/* Common label for resource */}}
 {{- define "common.labels" }}
-app.kubernetes.io/name: {{ template "deployment.name" . }}
 {{- include "chart.labels.part" . }}
 {{- end }}
 
 {{- define "chart.labels" }}
 {{- include "common.labels" . }}
+app.kubernetes.io/name: {{ template "deployment.name" . }}
 app.kubernetes.io/version: {{ .Chart.AppVersion }}
 {{- end }}
 
 {{- define "chart.labels.part" }}
 app.kubernetes.io/part-of: {{ .Chart.Name }}
+{{- end }}
+
+{{/* Service name for deployment */}}
+{{- define "service.name" }}
+{{- printf "%s" .Chart.Name }}
 {{- end }}
 
 {{- define "deployment.name" }}
@@ -31,10 +36,6 @@ app.kubernetes.io/part-of: {{ .Chart.Name }}
 
 {{- define "ingress.name" -}}
 {{- printf "%s-ingress" (include "deployment.name" .) }}
-{{- end }}
-
-{{- define "service.name" -}}
-{{- printf "%s-" (include "deployment.name" .) }}
 {{- end }}
 
 {{- define "ingress.canary.annotations" }}
