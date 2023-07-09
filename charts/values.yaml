@@ -19,22 +19,38 @@ service:
       restart:
         enabled: true
 
+  testing:
+#    something: another-thing2222
+    something: another-thing
+
   readinessProbe:
     successThreshold: 3
-    initialDelaySeconds: 40
+    initialDelaySeconds: 3
     failureThreshold: 3
   livenessProbe:
-    initialDelaySeconds: 40
-    periodSeconds: 20
+    initialDelaySeconds: 3
+    periodSeconds: 2
     failureThreshold: 3
   restartPolicy: Always
 
 replications:
-  desire: 2
+  desire: 1
+
+ingress:
+  enabled: true
+  hostName: practice.info
+  annotations:
+    nginx.ingress.kubernetes.io/canary: true
+    nginx.ingress.kubernetes.io/canary-weight: 20
+    app.kubernetes.io/name: some-name
 
 strategy:
   type: RollingUpdate
   rollingUpdate:
     maxSurge: 1 # Max number of pods create one time - default 25%
     maxUnavailable: 0 # Max number of pods offline during rollout
+  canary:
+    enabled: false
+    namePrefix: canary
+    weight: 20
 
