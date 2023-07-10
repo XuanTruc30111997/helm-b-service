@@ -15,6 +15,3 @@ management:
       enabled: true
     restart:
       enabled: true
-
-testing:
-  something: something
