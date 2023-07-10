@@ -19,6 +19,10 @@ service:
       restart:
         enabled: true
 
+  testing:
+    something: another-thing2222
+#    something: another-thing
+
   readinessProbe:
     successThreshold: 3
     initialDelaySeconds: 8

@@ -9,6 +9,10 @@ public class TestingProperties {
     @Autowired
     private Environment env;
 
+    public String getSomething() {
+        return getProperty("testing.something");
+    }
+
     private String getProperty(String property) {
         return env.getProperty(property);
     }
