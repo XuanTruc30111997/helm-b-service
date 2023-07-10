@@ -25,11 +25,11 @@ service:
 
   readinessProbe:
     successThreshold: 3
-    initialDelaySeconds: 3
+    initialDelaySeconds: 8
     failureThreshold: 3
   livenessProbe:
-    initialDelaySeconds: 3
-    periodSeconds: 2
+    initialDelaySeconds: 8
+    periodSeconds: 5
     failureThreshold: 3
   restartPolicy: Always
 

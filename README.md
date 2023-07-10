@@ -11,9 +11,9 @@
 
 ## Push to Docker Registry
 * **Build package** mvn package -Dmaven.test.skip
-* **Build Docker** docker build -t practice-helm/b-service:1.3.6 .
-* **Tag Image** docker tag practice-helm/b-service:1.3.6 <repo>/helm-b-service:1.3.6
-* **Push Image** docker push <repo>/helm-b-service:1.3.6
+* **Build Docker** docker build -t practice-helm/b-service:1.4.0 .
+* **Tag Image** docker tag practice-helm/b-service:1.4.0 <repo>/helm-b-service:1.4.0
+* **Push Image** docker push <repo>/helm-b-service:1.4.0
 
 ## Helm
 * **Helm install:** helm install b-service-dev -n practice-helm ./charts
