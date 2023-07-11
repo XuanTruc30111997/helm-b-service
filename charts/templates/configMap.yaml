@@ -25,6 +25,3 @@ data:
           enabled: {{ .Values.service.management.endpoint.info.enabled }}
         restart:
           enabled: {{ .Values.service.management.endpoint.restart.enabled }}
-
-    testing:
-      something: {{ .Values.service.testing.something }}

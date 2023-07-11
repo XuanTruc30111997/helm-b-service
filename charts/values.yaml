@@ -21,10 +21,9 @@ service:
 
   testing:
     something: something-ahihi
-
   readinessProbe:
     successThreshold: 3
-    initialDelaySeconds: 3
+    initialDelaySeconds: 8
     failureThreshold: 3
   livenessProbe:
     initialDelaySeconds: 3
