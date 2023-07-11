@@ -29,9 +29,10 @@ service:
     failureThreshold: 3
   livenessProbe:
     initialDelaySeconds: 8
-    periodSeconds: 5
+    periodSeconds: 2
     failureThreshold: 3
   restartPolicy: Always
+  terminationGracePeriodSeconds: 60
 
 replications:
   desire: 1
