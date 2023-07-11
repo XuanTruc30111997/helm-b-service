@@ -20,8 +20,8 @@ service:
         enabled: true
 
   testing:
-    something: another-thing2222
-#    something: another-thing
+#    something: another-thing2222
+    something: another-thing
 
   readinessProbe:
     successThreshold: 3
@@ -45,7 +45,6 @@ ingress:
 
 strategy:
   type: RollingUpdate
-  includeService: true
   rollingUpdate:
     maxSurge: 1 # Max number of pods create one time - default 25%
     maxUnavailable: 0 # Max number of pods offline during rollout
@@ -53,4 +52,7 @@ strategy:
     enabled: false
     namePrefix: canary
     weight: 20
+  blueGreen:
+    enabled: false
+    active: green
 

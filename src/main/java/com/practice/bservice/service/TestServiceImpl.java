@@ -10,6 +10,6 @@ public class TestServiceImpl implements TestService {
     TestingProperties testingProperties;
     @Override
     public String callTest() {
-        return "This is B " + testingProperties.getSomething() + " - with Rolling version";
+        return "This is B " + testingProperties.getSomething() + " - with Green version";
     }
 }

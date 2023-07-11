@@ -1,4 +1,4 @@
-  {{ if .Values.strategy.includeService }}
+  {{- if not (or .Values.strategy.canary.enabled .Values.strategy.blueGreen.enabled) }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -7,7 +7,7 @@ metadata:
   labels:
     {{- include "chart.labels" . | indent 4 }}
   annotations:
-    {{- include "service.annotations" . | indent 4 }}
+#    {{- include "service.annotations" . | indent 4 }}
 spec:
 #  type: LoadBalancer
   ports:
@@ -16,5 +16,5 @@ spec:
       targetPort: {{ .Values.service.server.port }}
       name: http
   selector:
-    {{- include "common.labels" . | indent 4 }}
+    {{- include "service.selector.active" . | indent 4 }}
     {{- end -}}
