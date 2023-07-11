@@ -20,7 +20,7 @@ service:
         enabled: true
 
   testing:
-    something: ahihihihihi
+    something: something-ahihi
 
   readinessProbe:
     successThreshold: 3
