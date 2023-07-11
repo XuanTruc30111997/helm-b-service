@@ -5,6 +5,7 @@
 {{/* Common label for resource */}}
 {{- define "common.labels" }}
 {{- include "chart.labels.part" . }}
+app.label: {{ template "deployment.active" . }}
 {{- end }}
 
 {{- define "chart.labels" }}
@@ -26,8 +27,25 @@ app.kubernetes.io/part-of: {{ .Chart.Name }}
 {{- if .Values.strategy.canary.enabled }}
 {{- printf "%s-%s" .Chart.Name .Values.strategy.canary.namePrefix | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- else -}}
-{{- printf "%s" .Chart.Name }}
+{{- if .Values.strategy.blueGreen.enabled }}
+{{- printf "%s-%s" .Chart.Name (include "deployment.active" .) | replace "+" "_" | trunc 63 | trimSuffix "-" }}
+{{- else -}}
+{{- printf "%s-%s" .Chart.Name (include "deployment.active" .) | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end -}}
+{{- end -}}
+{{- end }}
+
+{{- define "deployment.active" }}
+{{- if .Values.strategy.blueGreen.enabled }}
+{{- printf "blue" }}
+{{- else -}}
+{{- printf "green" }}
+{{- end -}}
+{{- end }}
+
+{{- define "service.selector.active" }}
+{{- include "chart.labels.part" . }}
+app.label: "{{ .Values.strategy.blueGreen.active }}"
 {{- end }}
 
 {{- define "config.name" -}}
@@ -45,14 +63,10 @@ nginx.ingress.kubernetes.io/canary-weight: "{{ .Values.strategy.canary.weight }}
 {{- end}}
 {{- end }}
 
-
 {{- define "service.annotations" }}
-{{/*
 "helm.sh/resource-policy": keep
-*/}}
 {{- end }}
 
 {{- define "deployment.annotations" }}
 checksum/config: {{ include (print $.Template.BasePath "/configMap.yaml") . | sha256sum }}
 {{- end }}
-
