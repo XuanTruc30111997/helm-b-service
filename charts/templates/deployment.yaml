@@ -44,5 +44,10 @@ spec:
             initialDelaySeconds: {{ .Values.service.livenessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.service.livenessProbe.periodSeconds }}
             failureThreshold: {{ .Values.service.livenessProbe.failureThreshold }}
+          lifecycle:
+            preStop:
+              exec:
+                command: [ "/bin/sleep", "8" ]
       restartPolicy: {{ .Values.service.restartPolicy }}
+      terminationGracePeriodSeconds: {{ .Values.service.terminationGracePeriodSeconds }}
 

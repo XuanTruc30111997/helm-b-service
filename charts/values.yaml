@@ -20,8 +20,7 @@ service:
         enabled: true
 
   testing:
-    something: another-thing2222
-#    something: another-thing
+    something: ahihihihihi
 
   readinessProbe:
     successThreshold: 3
@@ -30,8 +29,9 @@ service:
   livenessProbe:
     initialDelaySeconds: 3
     periodSeconds: 2
-    failureThreshold: 3
+    failureThreshold: 2
   restartPolicy: Always
+  terminationGracePeriodSeconds: 60
 
 replications:
   desire: 1
