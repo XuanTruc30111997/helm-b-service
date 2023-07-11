@@ -32,6 +32,7 @@ service:
     periodSeconds: 2
     failureThreshold: 3
   restartPolicy: Always
+  terminationGracePeriodSeconds: 60
 
 replications:
   desire: 1
