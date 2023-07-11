@@ -19,5 +19,6 @@
 * **Helm install:** helm install b-service-dev -n practice-helm ./charts
 * **Helm get:** helm ls --all -n practice-helm
 * **Helm upgrade:** helm upgrade b-service-dev -n practice-helm ./charts
+* **Helm upgrade if not exist do install:** helm upgrade --install b-service-dev -n practice-helm ./charts
 * **Helm rollback to previous version:** helm rollback b-service-dev 1 -n practice-helm
 * **Helm uninstall:** helm uninstall b-service-dev -n practice-helm

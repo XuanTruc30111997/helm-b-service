@@ -19,6 +19,8 @@ spec:
     metadata:
       labels:
         {{- include "chart.labels" . | indent 8 }}
+      annotations:
+        {{- include "deployment.annotations" . | indent 8 }}
     spec:
       containers:
         - name: {{ .Chart.Name }}

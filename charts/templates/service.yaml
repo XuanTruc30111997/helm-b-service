@@ -6,6 +6,8 @@ metadata:
   namespace: {{ .Values.service.namespace }}
   labels:
     {{- include "chart.labels" . | indent 4 }}
+  annotations:
+    {{- include "service.annotations" . | indent 4 }}
 spec:
 #  type: LoadBalancer
   ports:

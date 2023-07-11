@@ -45,3 +45,14 @@ nginx.ingress.kubernetes.io/canary-weight: "{{ .Values.strategy.canary.weight }}
 {{- end}}
 {{- end }}
 
+
+{{- define "service.annotations" }}
+{{/*
+"helm.sh/resource-policy": keep
+*/}}
+{{- end }}
+
+{{- define "deployment.annotations" }}
+checksum/config: {{ include (print $.Template.BasePath "/configMap.yaml") . | sha256sum }}
+{{- end }}
+
