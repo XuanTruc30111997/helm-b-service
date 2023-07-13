@@ -49,4 +49,4 @@ spec:
               exec:
                 command: [ "sh", "-c", "sleep 7" ]
       restartPolicy: {{ .Values.service.restartPolicy }}
-
+      terminationGracePeriodSeconds: {{ .Values.service.terminationGracePeriodSeconds }}
