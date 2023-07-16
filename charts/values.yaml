@@ -20,8 +20,7 @@ service:
         enabled: true
 
   testing:
-#    something: another-thing2222
-    something: another-thing
+    something: another-thing-green
 
   readinessProbe:
     successThreshold: 3
@@ -54,6 +53,6 @@ strategy:
     namePrefix: canary
     weight: 20
   blueGreen:
-    enabled: false
-    active: green
+    enabled: true
+    active: stable
 
