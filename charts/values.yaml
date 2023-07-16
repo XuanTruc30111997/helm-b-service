@@ -20,8 +20,7 @@ service:
         enabled: true
 
   testing:
-#    something: another-thing2222
-    something: another-thing
+    something: another-thing2222
 
   readinessProbe:
     successThreshold: 3
@@ -55,5 +54,5 @@ strategy:
     weight: 20
   blueGreen:
     enabled: false
-    active: green
+    active: stable
 

@@ -4,5 +4,5 @@
 FROM adoptopenjdk:11-jre-hotspot
 EXPOSE 8081
 ARG JAR_FILE=target/*.jar
-COPY ${JAR_FILE} b-service-1.5.1-SNAPSHOT.jar
-ENTRYPOINT ["java","-jar","/b-service-1.5.1-SNAPSHOT.jar"]
+COPY ${JAR_FILE} b-service-1.5.3-SNAPSHOT.jar
+ENTRYPOINT ["java","-jar","/b-service-1.5.3-SNAPSHOT.jar"]

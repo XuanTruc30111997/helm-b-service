@@ -30,22 +30,30 @@ app.kubernetes.io/part-of: {{ .Chart.Name }}
 {{- if .Values.strategy.blueGreen.enabled }}
 {{- printf "%s-%s" .Chart.Name (include "deployment.active" .) | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- else -}}
-{{- printf "%s-%s" .Chart.Name (include "deployment.active" .) | replace "+" "_" | trunc 63 | trimSuffix "-" }}
+{{- printf "%s" .Chart.Name | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end -}}
 {{- end -}}
 {{- end }}
 
 {{- define "deployment.active" }}
 {{- if .Values.strategy.blueGreen.enabled }}
-{{- printf "blue" }}
-{{- else -}}
 {{- printf "green" }}
+{{- else -}}
+{{- printf "stable" }}
+{{- end -}}
+{{- end }}
+
+{{- define "service.selector.label" }}
+{{- if .Values.strategy.blueGreen.enabled }}
+{{- printf "green" }}
+{{- else -}}
+{{- printf "%s" .Values.strategy.blueGreen.active }}
 {{- end -}}
 {{- end }}
 
 {{- define "service.selector.active" }}
 {{- include "chart.labels.part" . }}
-app.label: "{{ .Values.strategy.blueGreen.active }}"
+app.label: {{ template "service.selector.label" . }}
 {{- end }}
 
 {{- define "config.name" -}}
@@ -61,10 +69,6 @@ app.label: "{{ .Values.strategy.blueGreen.active }}"
 nginx.ingress.kubernetes.io/canary: "{{ .Values.strategy.canary.enabled }}"
 nginx.ingress.kubernetes.io/canary-weight: "{{ .Values.strategy.canary.weight }}"
 {{- end}}
-{{- end }}
-
-{{- define "service.annotations" }}
-"helm.sh/resource-policy": keep
 {{- end }}
 
 {{- define "deployment.annotations" }}
