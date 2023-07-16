@@ -15,6 +15,7 @@ app.kubernetes.io/version: {{ .Chart.AppVersion }}
 
 {{- define "chart.labels.part" }}
 app.kubernetes.io/part-of: {{ .Chart.Name }}
+app.label: stable
 {{- end }}
 
 {{/* Service name for deployment */}}
